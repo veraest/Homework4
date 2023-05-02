@@ -9,88 +9,110 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    var posts: [Post] = [
+    Post(author: "Solar system",
+         description: "Mercury is the first planet of our Solar system.",
+         image: "Mercury",
+         likes: 1232,
+         views: 5967),
 
-    
-    private let profileHeaderView = { () -> ProfileHeaderView in
-        let  view =  ProfileHeaderView()
+    Post(author: "Milkey Way",
+         description: "Venus is too hot for any form of life.",
+         image: "Venus",
+         likes: 487,
+         views: 1506),
+
+    Post(author: "Andromeda",
+         description: "We'll destroy you one day, the Earth.",
+         image: "Earth",
+         likes: 59873,
+         views: 305667),
+
+    Post(author: "NASA",
+         description: "NASA says that the Red Planer is waiting.",
+         image: "Mars",
+         likes: 65,
+         views: 218),
+    ]
+
+    //MARK: - Private
         
-        return view
-    }()
-    
-    private let openPostButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Open post", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+     private lazy var tableView: UITableView = {
+           let tableView = UITableView(frame: .zero, style: .grouped)
+           tableView.translatesAutoresizingMaskIntoConstraints = false
+           tableView.rowHeight = UITableView.automaticDimension
+           tableView.register(ProfileTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileTableHeaderView")
+           tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
+           tableView.delegate = self
+           tableView.dataSource = self
+           return tableView
+       }()
+
+    //MARK: - Override
         
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
-        title = "Profile"
-        
-        translatesAutoresizingMaskIntoConstraints()
-        addSubviews()
-        setupContraints()
-        
-    }
-    
-    private func translatesAutoresizingMaskIntoConstraints() {
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        openPostButton.translatesAutoresizingMaskIntoConstraints = false
-        
+
+        setupTableView()
     }
 
-    private func addSubviews() {
-        view.addSubview(profileHeaderView)
-        view.addSubview(openPostButton)
+    //MARK: - Private func
         
+    private func setupTableView() {
+        view.addSubview(tableView)
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            ])
+        }
     }
-        
-    private func setupContraints() {
-        let safeAreaGuide = view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-           
-            //profileHeaderView
-            profileHeaderView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor),
-            
-            profileHeaderView.topAnchor.constraint(
-                equalTo: safeAreaGuide.topAnchor),
-            
-            profileHeaderView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: 0),
-            
-            profileHeaderView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: 0),
-            
-            profileHeaderView.topAnchor.constraint(
-                equalTo: safeAreaGuide.topAnchor,
-                constant: 0),
-            profileHeaderView.heightAnchor.constraint(
-                equalToConstant: 220),
-            
-            openPostButton.heightAnchor.constraint(
-                equalToConstant: 50),
-            
-            openPostButton.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: 0),
-            
-            openPostButton.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: 0),
-            
-            openPostButton.bottomAnchor.constraint(
-                equalTo: safeAreaGuide.bottomAnchor,
-                constant: 0),         
-        ])
-    }
+
+    //MARK: - Extension
     
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
+        func numberOfSections(in tableView: UITableView) -> Int {
+            return 1
+        }
+
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return posts.count
+        }
+
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
+            let post = posts[indexPath.row]
+            cell.configure(with: post)
+            return cell
+        }
+
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return UITableView.automaticDimension
+        }
+
+        func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 100
+        }
+
+        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            if section == 0 {
+                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileTableHeaderView") as! ProfileTableHeaderView
+                return header
+            }
+            return nil
+        }
+
+        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            if section == 0 {
+                return 200
+            }
+
+            return 0
+        }
 }
+
+
 

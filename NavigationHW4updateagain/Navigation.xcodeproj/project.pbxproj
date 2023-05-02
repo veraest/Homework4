@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8443A5D829EF12DC004EA909 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443A5D729EF12DC004EA909 /* ProfileHeaderView.swift */; };
 		84783DB42A00504F00CD2C3D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84783DB32A00504F00CD2C3D /* LogInViewController.swift */; };
+		849E55732A01BA5400F0CBDA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E55722A01BA5400F0CBDA /* Post.swift */; };
+		849E55752A01BB6A00F0CBDA /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E55742A01BB6A00F0CBDA /* PostTableViewCell.swift */; };
+		849E55772A01BD8000F0CBDA /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E55762A01BD8000F0CBDA /* ProfileTableHeaderView.swift */; };
 		84B6D26D29E77E29004AEDDC /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6D26C29E77E29004AEDDC /* InfoViewController.swift */; };
 		84CA4CA729E74C67007BECED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA4CA629E74C67007BECED /* AppDelegate.swift */; };
 		84CA4CA929E74C67007BECED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA4CA829E74C67007BECED /* SceneDelegate.swift */; };
@@ -17,12 +20,14 @@
 		84CA4CBB29E74F72007BECED /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA4CBA29E74F72007BECED /* FeedViewController.swift */; };
 		84CA4CBD29E74F89007BECED /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA4CBC29E74F89007BECED /* ProfileViewController.swift */; };
 		84CA4CC029E75AE9007BECED /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA4CBF29E75AE9007BECED /* PostViewController.swift */; };
-		84CA4CC329E76077007BECED /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CA4CC229E76077007BECED /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8443A5D729EF12DC004EA909 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		84783DB32A00504F00CD2C3D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		849E55722A01BA5400F0CBDA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		849E55742A01BB6A00F0CBDA /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		849E55762A01BD8000F0CBDA /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
 		84B6D26C29E77E29004AEDDC /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		84CA4CA329E74C67007BECED /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CA4CA629E74C67007BECED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,7 +38,6 @@
 		84CA4CBA29E74F72007BECED /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		84CA4CBC29E74F89007BECED /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		84CA4CBF29E75AE9007BECED /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		84CA4CC229E76077007BECED /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,9 +54,12 @@
 		8443A5D629EF12A8004EA909 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				849E55722A01BA5400F0CBDA /* Post.swift */,
 				84783DB32A00504F00CD2C3D /* LogInViewController.swift */,
 				8443A5D729EF12DC004EA909 /* ProfileHeaderView.swift */,
 				84CA4CBC29E74F89007BECED /* ProfileViewController.swift */,
+				849E55742A01BB6A00F0CBDA /* PostTableViewCell.swift */,
+				849E55762A01BD8000F0CBDA /* ProfileTableHeaderView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -77,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				8443A5D629EF12A8004EA909 /* Profile */,
-				84CA4CC129E7605A007BECED /* Data */,
 				84CA4CBE29E75AB7007BECED /* Controllers */,
 				84CA4CA629E74C67007BECED /* AppDelegate.swift */,
 				84CA4CA829E74C67007BECED /* SceneDelegate.swift */,
@@ -96,14 +102,6 @@
 				84B6D26C29E77E29004AEDDC /* InfoViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		84CA4CC129E7605A007BECED /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				84CA4CC229E76077007BECED /* Post.swift */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,9 +179,11 @@
 				84783DB42A00504F00CD2C3D /* LogInViewController.swift in Sources */,
 				84CA4CBD29E74F89007BECED /* ProfileViewController.swift in Sources */,
 				84B6D26D29E77E29004AEDDC /* InfoViewController.swift in Sources */,
-				84CA4CC329E76077007BECED /* Post.swift in Sources */,
 				84CA4CA929E74C67007BECED /* SceneDelegate.swift in Sources */,
+				849E55732A01BA5400F0CBDA /* Post.swift in Sources */,
+				849E55752A01BB6A00F0CBDA /* PostTableViewCell.swift in Sources */,
 				84CA4CC029E75AE9007BECED /* PostViewController.swift in Sources */,
+				849E55772A01BD8000F0CBDA /* ProfileTableHeaderView.swift in Sources */,
 				8443A5D829EF12DC004EA909 /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
