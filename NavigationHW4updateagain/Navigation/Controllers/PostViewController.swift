@@ -10,21 +10,24 @@ import UIKit
 
 class PostViewController: UIViewController {
     
-    var titlePost: String = "Anonymous"
-    
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemPink
-            self.navigationItem.title = titlePost
-            
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Добавить", style: .plain, target: self, action: #selector(addTapped))    }
-    
-    @objc func addTapped() {
+        view.backgroundColor = .magenta
+
+        barButtonItem()
+        title = "Мой пост"
+    }
+    private func barButtonItem() {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapBarButton))
+        navigationItem.rightBarButtonItem = barButtonItem
+    }
         
+    @objc private func tapBarButton() {
         let infoViewController = InfoViewController()
         present(infoViewController, animated: true)
-
     }
+}
+    
     /*
     // MARK: - Navigation
 
@@ -35,4 +38,4 @@ class PostViewController: UIViewController {
     }
     */
 
-}
+

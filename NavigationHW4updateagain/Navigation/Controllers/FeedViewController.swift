@@ -10,9 +10,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    var post = Post(title: "Мой пост")
-
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemYellow
         
@@ -39,11 +37,12 @@ class FeedViewController: UIViewController {
 
     @objc func buttonAction () {
         
-        let  postViewController = PostViewController()
+        let postViewController = PostViewController()
                
         self.navigationController?.pushViewController(postViewController, animated: true)
         
-        postViewController.titlePost = post.title
+        //postViewController.titlePost = post.title
+        
         
     }
     
