@@ -12,8 +12,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     private let notificationCenter = NotificationCenter.default
     
-    private let colorSet = UIColor(red: 0x48 / 255.0, green: 0x85 / 255.0, blue: 0xCC / 255.0, alpha: 1.0)
-    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +38,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         textField.font = .systemFont(ofSize: 16)
         textField.placeholder = " Email or phone number"
         textField.backgroundColor = .systemGray6
-        textField.tintColor = colorSet
+        textField.tintColor = UIColor(named: "CustomBlue Color")
         textField.autocapitalizationType = .none
         textField.heightAnchor.constraint(equalToConstant: 49.5).isActive = true
 
@@ -67,7 +65,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         textField.font = .systemFont(ofSize: 16)
         textField.placeholder = " Password"
         textField.backgroundColor = .systemGray6
-        textField.tintColor = colorSet
+        textField.tintColor = UIColor(named: "CustomBlue Color")
         textField.isSecureTextEntry = true
         textField.autocapitalizationType = .none
         textField.heightAnchor.constraint(equalToConstant: 49.5).isActive = true
