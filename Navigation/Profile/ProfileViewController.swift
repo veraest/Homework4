@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ProfileViewController: UIViewController {
     
     
     
@@ -50,37 +50,40 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                 tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
             ])
+        }
     }
-    
 
+
+
+extension ProfileViewController:  UITableViewDataSource, UITableViewDelegate{
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+    return 2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
-            return  posts.count
+    if section == 0 {
+        return 1
+    } else {
+        return  posts.count
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0  {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as! PhotosTableViewCell
-            return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as! PhotosTableViewCell
+        return cell
         } else  {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
-            cell.configure(with: posts[indexPath.row])
-            return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
+        cell.configure(with: posts[indexPath.row])
+        return cell
         }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            if section == 0 {
-                    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileTableHeaderView") as! ProfileTableHeaderView
-                    return header
+        if section == 0 {
+                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileTableHeaderView") as! ProfileTableHeaderView
+                return header
         } else {
             return nil
         }
@@ -102,10 +105,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            if indexPath.section == 0 {
-                return 150
-            } else {
-                return UITableView.automaticDimension
-            }
+        if indexPath.section == 0 {
+            return 150
+        } else {
+            return UITableView.automaticDimension
         }
+    }
 }
