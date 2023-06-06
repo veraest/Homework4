@@ -12,9 +12,12 @@ class ProfileHeaderView: UIView {
 
     //MARK: - Properties
     
-    private(set) var statusText = ""
+     var statusText = ""
 
-    private let avatarImageView: UIImageView = {
+    
+    
+    private lazy var avatarImageView: UIImageView = {
+                
         let avatarImageView = UIImageView()
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         avatarImageView.backgroundColor = .lightGray
@@ -24,9 +27,11 @@ class ProfileHeaderView: UIView {
         avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.layer.borderWidth = 3
         avatarImageView.clipsToBounds = true
+        avatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapOnAvatar)))
+        avatarImageView.isUserInteractionEnabled = true
         return avatarImageView
     }()
-        
+    
     private let avatarLabel: UILabel = {
         let avatarLabel = UILabel()
         avatarLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -76,33 +81,66 @@ class ProfileHeaderView: UIView {
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
-
+    
+    
+    private let halfTrasparentView: UIView =  {
+        let view = UIView()
+            view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            view.alpha = 0
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+    }()
+    
+    
+       
+    private lazy var crossButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "closeButton"), for: .normal)
+        button.tintColor = .black
+        button.alpha = 0
+        button.addTarget(self, action: #selector(closingButton), for: .touchUpInside)
+        button.isUserInteractionEnabled = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+   
+    
+        
     //MARK: - Override
     override init(frame: CGRect) {
         super.init(frame: .zero)
-
+        
         setupViews()
         setupAutoLayout()
+        
+        
     }
+    
         
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    
     //MARK: - Private func
         
     private func setupViews() {
-        translatesAutoresizingMaskIntoConstraints = false
-
+              
         addSubview(avatarImageView)
         addSubview(avatarLabel)
-        addSubview(statusButton)
         addSubview(statusLabel)
+        addSubview(statusButton)
         addSubview(statusField)
-    
+        addSubview(crossButton)
+        addSubview(halfTrasparentView)
+        halfTrasparentView.addSubview(crossButton)
+        
     }
         
     private func setupAutoLayout() {
+        
+               
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -117,16 +155,26 @@ class ProfileHeaderView: UIView {
             statusLabel.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -60),
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 25),
             
+            statusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+            statusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            statusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            statusButton.heightAnchor.constraint(equalToConstant: 50),
             
             statusField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 11),
             statusField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 21),
             statusField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -21),
             statusField.heightAnchor.constraint(equalToConstant: 40),
             
-            statusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-            statusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            statusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            statusButton.heightAnchor.constraint(equalToConstant: 50),
+            crossButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            crossButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            crossButton.widthAnchor.constraint(equalToConstant: 30),
+            crossButton.heightAnchor.constraint(equalToConstant: 30),
+            
+            halfTrasparentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            halfTrasparentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            halfTrasparentView.topAnchor.constraint(equalTo: topAnchor),
+            halfTrasparentView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
         ])
     }
     
@@ -140,7 +188,46 @@ class ProfileHeaderView: UIView {
         statusText = textField.text ?? ""
     }
         
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         endEditing(true)
     }
+    
+    @objc private func tapOnAvatar() {
+        UIView.animate(withDuration: 1.0, animations: {
+            self.avatarImageView.transform = CGAffineTransform(scaleX: 4, y: 3.2)
+            self.halfTrasparentView.frame = .init(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 390, height: 700))
+            self.avatarImageView.center = self.halfTrasparentView.center
+            self.avatarImageView.layer.cornerRadius = 0
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.crossButton.alpha = 1
+                self.halfTrasparentView.alpha = 1
+            }
+        }
+        
+    }
+    
+    @objc private func closingButton(){
+        print("Done")
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.crossButton.alpha = 0
+            self.halfTrasparentView.backgroundColor = .clear
+        
+       }) { _ in
+               UIView.animate(withDuration: 0.5, animations: {
+                   self.avatarImageView.frame = .init(origin: CGPoint(x: 16, y: 16), size: CGSize(width: 100, height: 100))
+                   self.avatarImageView.transform = .identity
+                   self.avatarImageView.layer.cornerRadius = 50
+        
+    
+           })
+        }
+    }
+
 }
+    
+
+
+    
+
