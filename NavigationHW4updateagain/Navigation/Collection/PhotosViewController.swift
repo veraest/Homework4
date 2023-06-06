@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotosViewController:  UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class PhotosViewController:  UIViewController {
        
     private lazy var collectionView: UICollectionView = {
         
@@ -52,6 +52,9 @@ class PhotosViewController:  UIViewController, UICollectionViewDataSource, UICol
         ])
     }
     
+}
+
+extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         imagesForPost.count
     }
@@ -62,8 +65,11 @@ class PhotosViewController:  UIViewController, UICollectionViewDataSource, UICol
         cell.setupCell(model: imagesForPost[indexPath.row])
         return cell
     }
+}
+
+extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
-    private var inset: CGFloat { return 8}
+private var inset: CGFloat { return 8}
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
          let width = (collectionView.bounds.width - inset * 4) / 3

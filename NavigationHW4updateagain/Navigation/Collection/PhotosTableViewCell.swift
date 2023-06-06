@@ -60,7 +60,7 @@ class PhotosTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 3
-        imageView.layer.cornerRadius = 6
+        imageView.layer.cornerRadius = 10
         imageView.image = UIImage(named: "1")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -72,7 +72,7 @@ class PhotosTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 3
-        imageView.layer.cornerRadius = 6
+        imageView.layer.cornerRadius = 10
         imageView.image = UIImage(named: "2")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -84,7 +84,7 @@ class PhotosTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 3
-        imageView.layer.cornerRadius = 6
+        imageView.layer.cornerRadius = 10
         imageView.image = UIImage(named: "3")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -96,7 +96,7 @@ class PhotosTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 3
-        imageView.layer.cornerRadius = 6
+        imageView.layer.cornerRadius = 10
         imageView.image = UIImage(named: "4")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
